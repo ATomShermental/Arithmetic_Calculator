@@ -26,7 +26,7 @@ public class Main {
         }
         writer.close();
         DES.encrypt(input);
-        DES.decrypt(new File("encrypted.txt"));
+        DES.decrypt(new File( "encrypted.txt"));
 
 
 
