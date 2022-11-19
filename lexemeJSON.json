@@ -1,0 +1,14 @@
+[
+  {
+    "name":"expr1",
+    "content":"7+7"
+  },
+  {
+    "name": "expr2",
+    "content": "8*2-(-7)"
+  },
+  {
+    "name":"expr3",
+    "content": "8---1"
+  }
+]

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Expressions>
+    <Expression name="first">
+        <content>7+7</content>
+    </Expression>
+    <Expression name = "second">
+        <content>8*2-(-7)</content>
+    </Expression>
+    <Expression name = "third">
+        <content> 8---1</content>
+    </Expression>
+</Expressions>
