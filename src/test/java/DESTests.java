@@ -10,9 +10,9 @@ import java.io.IOException;
 public class DESTests {
     @Test
     public void testEncrypt() throws IOException {
-        File input = new File("input.txt");
+        File input = new File("Assets/input.txt");
         DES.encrypt(input);
-        DES.decrypt(new File("encrypted.txt"));
-        Assert.assertEquals(new FileInputStream("input.txt").read(),new FileInputStream("decrypted.txt").read());
+        DES.decrypt(new File("Assets/encrypted.txt"));
+        Assert.assertEquals(new FileInputStream("Assets/input.txt").read(),new FileInputStream("Assets/decrypted.txt").read());
     }
 }

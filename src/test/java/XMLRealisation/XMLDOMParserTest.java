@@ -18,7 +18,7 @@ public class XMLDOMParserTest {
     public void parse() throws IOException, SAXException, ParserConfigurationException {
         XMLDOMParser xmlParser = new XMLDOMParser();
         xmlParser.parse();
-        Scanner scanner = new Scanner(new File("lexemeXMLDecoded.txt"));
+        Scanner scanner = new Scanner(new File("Assets/lexemeXMLDecoded.txt"));
         List<Integer> exp = Arrays.asList(14,23,7);
         List<Integer> result = new ArrayList<>();
         while(scanner.hasNext()){

@@ -30,7 +30,7 @@ public class XMLDOMParser {
     void parse() throws ParserConfigurationException, IOException, SAXException {
         factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
-        document =  builder.parse(new File("lexemeXML.xml"));
+        document =  builder.parse(new File("Assets/lexemeXML.xml"));
         expressions = new ArrayList<>();
         nodeList = document.getDocumentElement().getChildNodes();
         for(int i =0; i <nodeList.getLength();i++){
@@ -50,7 +50,7 @@ public class XMLDOMParser {
 
 
 
-        writer = new FileWriter("lexemeXMLDecoded.txt");
+        writer = new FileWriter("Assets/lexemeXMLDecoded.txt");
         for(var expr : expressions){
             String buffer = expr.getContent();
             List<Lexeme> lexemes = Lexeme.lexemeAnalyze(buffer);

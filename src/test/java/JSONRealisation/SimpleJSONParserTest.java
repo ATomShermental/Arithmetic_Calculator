@@ -21,7 +21,7 @@ public class SimpleJSONParserTest {
 
         SimpleJSONParser jsonParser = new SimpleJSONParser();
         jsonParser.parse();
-        Scanner scanner = new Scanner(new File("lexemeJSONDecoded.txt"));
+        Scanner scanner = new Scanner(new File("Assets/lexemeJSONDecoded.txt"));
         List<Integer> exp = Arrays.asList(14,23,7);
         List<Integer> result = new ArrayList<>();
         while(scanner.hasNext()){

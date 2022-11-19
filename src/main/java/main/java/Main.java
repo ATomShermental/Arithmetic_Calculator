@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File input = new File("input.txt");
-        String outputStr = "output.txt";
+        File input = new File("Assets/input.txt");
+        String outputStr = "Assets/output.txt";
         Scanner scanner = new Scanner(input);
         FileWriter writer = new FileWriter(outputStr);
         while(scanner.hasNextLine()){
@@ -26,7 +26,7 @@ public class Main {
         }
         writer.close();
         DES.encrypt(input);
-        DES.decrypt(new File( "encrypted.txt"));
+        DES.decrypt(new File( "Assets/encrypted.txt"));
 
 
 

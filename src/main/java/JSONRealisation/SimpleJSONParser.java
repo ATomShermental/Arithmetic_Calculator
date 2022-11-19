@@ -23,14 +23,14 @@ public class SimpleJSONParser {
 
     void parse() throws IOException, ParseException {
         parser = new JSONParser();
-        array = (JSONArray) parser.parse(new FileReader("lexemeJSON.json"));
+        array = (JSONArray) parser.parse(new FileReader("Assets/lexemeJSON.json"));
         List<Expression> expressions = new ArrayList<>();
         for(Object obj : array){
             JSONObject sample = (JSONObject) obj;
             expressions.add(new Expression((String) sample.get("name"),(String) sample.get("content")));
         }
 
-        writer = new FileWriter("lexemeJSONDecoded.txt");
+        writer = new FileWriter("Assets/lexemeJSONDecoded.txt");
         for(var expr : expressions){
             String buffer = expr.getContent();
             List<Lexeme> lexemes = Lexeme.lexemeAnalyze(buffer);

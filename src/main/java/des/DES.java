@@ -50,7 +50,7 @@ public class DES {
 
     public static void encrypt(File file) {
 
-        File encrypted = new File("encrypted.txt");
+        File encrypted = new File("Assets/encrypted.txt");
 
         try {
             encryptDecrypt("12345678", Cipher.ENCRYPT_MODE, file, encrypted);
@@ -64,7 +64,7 @@ public class DES {
 
     public static void decrypt(File file)  {
 
-        File decrypted = new File("decrypted.txt");
+        File decrypted = new File("Assets/decrypted.txt");
 
         try {
             encryptDecrypt("12345678", Cipher.DECRYPT_MODE, file, decrypted);
