@@ -10,7 +10,14 @@ public class Expression {
         this.name = name;
         this.content = content;
     }
-
+    @Override
+    public boolean equals(Object o){
+        Expression expression = (Expression) o;
+        if(this.name.equals(expression.name) && this.content.equals(expression.content)){
+            return true;
+        }
+        return false;
+    }
     public String getContent(){
         return this.content;
     }

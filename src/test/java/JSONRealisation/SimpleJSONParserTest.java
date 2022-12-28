@@ -1,5 +1,6 @@
 package JSONRealisation;
 
+import PlainTextRealisation.Expression;
 import XMLRealisation.XMLDOMParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
@@ -20,15 +21,12 @@ public class SimpleJSONParserTest {
     public void parse() throws IOException, ParseException {
 
         SimpleJSONParser jsonParser = new SimpleJSONParser();
-        jsonParser.parse();
-        Scanner scanner = new Scanner(new File("Assets/lexemeJSONDecoded.txt"));
-        List<Integer> exp = Arrays.asList(14,23,7);
-        List<Integer> result = new ArrayList<>();
-        while(scanner.hasNext()){
-            String buffer = scanner.next();
-            result.add(scanner.nextInt());
+        List<Expression> expressions = jsonParser.parse("Assets/lexemeJSON.json");
+        List<Expression> expectations = new ArrayList<>();
+        expectations.add(new Expression("expr1","7+7"));
+        expectations.add(new Expression("expr2","8*2-(-7)"));
+        expectations.add(new Expression("expr3","8---1"));
 
-        }
-        Assert.assertEquals(exp, result);
+        Assert.assertEquals(expressions,expectations);
     }
 }

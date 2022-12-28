@@ -1,33 +1,28 @@
 package XMLRealisation;
 
+import PlainTextRealisation.Expression;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class XMLDOMParserTest {
 
     @Test
     public void parse() throws IOException, SAXException, ParserConfigurationException {
         XMLDOMParser xmlParser = new XMLDOMParser();
-        xmlParser.parse();
-        Scanner scanner = new Scanner(new File("Assets/lexemeXMLDecoded.txt"));
-        List<Integer> exp = Arrays.asList(14,23,7);
-        List<Integer> result = new ArrayList<>();
-        while(scanner.hasNext()){
-            String buffer = scanner.next();
-            result.add(scanner.nextInt());
+        List<Expression> expressions = xmlParser.parse("Assets/lexemeXML.xml");
+        List<Expression> expectations = new ArrayList<>();
+        expectations.add(new Expression("first","7+7"));
+        expectations.add(new Expression("second","8*2-(-7)"));
+        expectations.add(new Expression("third","8---1"));
 
-    }
-        Assert.assertEquals(exp, result);
-
+        Assert.assertEquals(expressions,expectations);
 
     }
 }

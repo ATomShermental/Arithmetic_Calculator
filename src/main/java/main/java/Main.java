@@ -19,9 +19,11 @@ public class Main {
         Scanner scanner = new Scanner(input);
         FileWriter writer = new FileWriter(outputStr);
         while(scanner.hasNextLine()){
+            String name = scanner.next();
             String buffer = scanner.nextLine();
             List<Lexeme> lexemes = Lexeme.lexemeAnalyze(buffer);
             LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
+            writer.write(name + " ");
             writer.write(Lexeme.expr(lexemeBuffer) + "\n");
         }
         writer.close();
