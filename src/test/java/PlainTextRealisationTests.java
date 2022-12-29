@@ -1,5 +1,5 @@
-import PlainTextRealisation.Lexeme;
-import PlainTextRealisation.LexemeBuffer;
+import PlainTextImplementation.Lexeme;
+import PlainTextImplementation.LexemeBuffer;
 import org.junit.Assert;
 import org.junit.Test;
 
