@@ -13,4 +13,9 @@
       <module name="PP_Project" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PP_Project" options="-parameters" />
+    </option>
+  </component>
 </project>
