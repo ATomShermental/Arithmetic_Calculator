@@ -1,8 +1,7 @@
 function sendRequest(formData, responseType){
     return new Promise((resolve,reject)=>{
         const xhr = new XMLHttpRequest();
-        xhr.open('POST',"http://arithmetic.cf/arithmetic/calculate");
-        xhr.setRequestHeader('Content-Type',responseType);
+        xhr.open("POST","/arithmetic/calculate");
 
         xhr.onload = () => {
             if(xhr.status >= 400){
@@ -20,27 +19,20 @@ function sendRequest(formData, responseType){
 }
 
 function dataForm(){
-    const inputFileType = document.getElementById("inputfiletype");
     const inputFile = document.getElementById("inputfile");
-    const inputZip = document.getElementById("input-zip");
-    const inputDec = document.getElementById("input-dec");
+    const inputZip = document.getElementById("input-zip").checked;
+    const inputDec = document.getElementById("input-dec").checked;
     const outputFileType = document.getElementById("outputfiletype");
-    const outputZip = document.getElementById("output-zip");
-    const outputEnc = document.getElementById("output-enc");
+    const outputZip = document.getElementById("output-zip").checked;
+    const outputEnc = document.getElementById("output-enc").checked;
 
     const formData = new FormData();
 
-    const inputFileTypeOption = inputFileType.getElementsByTagName('option');
     const outputFileTypeOption = outputFileType.getElementsByTagName('option');
 
-    let inputType = '';
     let outputType = '';
 
-    for(let i = 0; i < inputFileTypeOption.length; i++){
-        if(inputFileTypeOption[i].selected){
-            inputType = inputFileTypeOption[i].value;
-        }
-    }
+
     for(let i = 0; i < outputFileTypeOption.length; i++){
         if(outputFileTypeOption[i].selected){
             outputType = outputFileTypeOption[i].value;
@@ -48,7 +40,6 @@ function dataForm(){
     }
 
     const options = new Blob([JSON.stringify({
-        inputType: inputType,
         inputZip:  inputZip,
         inputDec: inputDec,
         outputType: outputType,
