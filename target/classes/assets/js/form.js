@@ -1,15 +1,14 @@
-function sendRequest(formData, responseType, extension){
+function sendRequest(formData, responseType){
     return new Promise((resolve,reject)=>{
         const xhr = new XMLHttpRequest();
-        xhr.open('POST',"/arithmetic/calculate");
-        xhr.responseType = extension;
+        xhr.open('POST',"http://arithmetic.cf/arithmetic/calculate");
         xhr.setRequestHeader('Content-Type',responseType);
 
         xhr.onload = () => {
             if(xhr.status >= 400){
-                reject(xhr.response)
+                reject(xhr.responseText)
             } else{
-                resolve(xhr.response)
+                resolve(xhr.responseText)
             }
         }
 
@@ -70,6 +69,7 @@ function dataForm(){
         case "json":
             responseType = 'application/json';
             extension = 'json';
+            break;
         case "xml":
             responseType = 'application/xml';
             extension = 'xml';
@@ -79,6 +79,16 @@ function dataForm(){
         responseType = 'application/zip';
         extension = 'zip';
     }
-    sendRequest(formData,responseType,extension);
 
+    sendRequest(formData, responseType).then((responseText) => {
+        let uri = 'data:' + responseType + ';base64,' + btoa(responseText);
+        let name = 'results.' + extension;
+
+        let link = document.createElement("a");
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
 }
