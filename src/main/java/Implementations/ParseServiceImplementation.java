@@ -30,7 +30,7 @@ public class ParseServiceImplementation implements ParseService {
                 expressions = simpleJSONParser.parse(array);
                 break;
             case "xml":
-                expressions = xmldomParser.parse(multipartFile.getBytes());
+                expressions = xmldomParser.parse(array);
                 break;
             case default:
                 throw new IllegalArgumentException("Incorrect file format");
