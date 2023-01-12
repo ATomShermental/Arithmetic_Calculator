@@ -27,6 +27,6 @@ public class DES{
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
 
-        return cipher.doFinal(data);
+        return cipher.  doFinal(data);
     }
 }

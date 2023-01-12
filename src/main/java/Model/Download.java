@@ -1,12 +1,14 @@
 package Model;
 
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.Getter;
+
 @Data
+@Getter
 public class Download {
-    private String inputZIP;
-    private String inputDec;
+    private boolean inputZip;
+    private boolean inputDec;
     private String outputType;
-    private String outputZIP;
-    private String outputEnc;
+    private boolean outputZip;
+    private boolean outputEnc;
 }

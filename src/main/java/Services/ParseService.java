@@ -1,9 +1,10 @@
 package Services;
 
+import Model.FileType;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ParseService {
-    public byte[] parse(MultipartFile multipartFile, String outputFiletype) throws Exception;
+     byte[] parse(FileType fileType, String outputFiletype) throws Exception;
 
 
 }

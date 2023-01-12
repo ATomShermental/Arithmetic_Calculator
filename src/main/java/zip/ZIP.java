@@ -2,6 +2,7 @@ package zip;
 
 
 import Model.FileType;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -34,11 +35,18 @@ public class ZIP {
 
             if ((zipEntry = zipInputStream.getNextEntry()) != null) {
 
-                return new FileType(zipEntry.getName(),zipInputStream.readAllBytes());
+                return new FileType(zipEntry.getName(), zipInputStream.readAllBytes());
             } else
-            throw new IllegalArgumentException("Zip contains no files");
+                throw new IllegalArgumentException("Zip contains no files");
         } catch (Exception e) {
-           throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
+    }
+
+    public FileType allUnzip(FileType fileType){
+        while(FilenameUtils.getExtension(fileType.getFilename()).equals("zip")){
+            fileType = unzip(fileType.getData());
+        }
+        return fileType;
     }
 }

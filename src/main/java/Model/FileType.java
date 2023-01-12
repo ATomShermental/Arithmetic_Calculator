@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class FileType {
-    String filename;
-    byte[] data;
+    public String filename;
+    public byte[] data;
 
     public FileType(String filename, byte[] data){
         this.filename = filename;

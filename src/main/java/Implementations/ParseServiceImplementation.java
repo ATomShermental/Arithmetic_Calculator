@@ -1,11 +1,11 @@
 package Implementations;
 
 import JSONImplementation.SimpleJSONParser;
+import Model.FileType;
 import PlainTextImplementation.*;
 import Services.ParseService;
 import XMLImplementation.XMLDOMParser;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +18,11 @@ public class ParseServiceImplementation implements ParseService {
     private PlainTextParser plainTextParser = new PlainTextParser();
 
     @Override
-    public byte[] parse(MultipartFile multipartFile, String outputFiletype) throws Exception {
+    public byte[] parse(FileType fileType, String outputFiletype) throws Exception {
         List<Expression> expressions;
         List<Result> results = new ArrayList<>();
-        byte[] array = multipartFile.getBytes();
-        switch (FilenameUtils.getExtension(multipartFile.getOriginalFilename())) {
+        byte[] array = fileType.getData();
+        switch (FilenameUtils.getExtension(fileType.filename)) {
             case "txt":
                 expressions = plainTextParser.parse(array);
                 break;
