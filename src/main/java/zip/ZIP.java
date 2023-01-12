@@ -1,45 +1,38 @@
 package zip;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class ZIP {
-    public void zip(String archiveName, String filename, byte[] data) {
+    public byte[] zip(String filename, byte[] data) {
         try {
-            ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(archiveName));
-            ZipEntry entry = new ZipEntry(filename);
-            zout.putNextEntry(entry);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ZipOutputStream zout = new ZipOutputStream(byteArrayOutputStream);
+            ZipEntry zipEntry = new ZipEntry(filename);
+            zout.putNextEntry(zipEntry);
             zout.write(data);
             zout.closeEntry();
             zout.close();
-        } catch(Exception e) {
-            e.printStackTrace();
+            return byteArrayOutputStream.toByteArray();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void zip(String archiveName, String outputFilename, String inputFilename) {
+
+    public byte[] unzip(byte[] data) {
         try {
-            FileInputStream fis = new FileInputStream(inputFilename);
-            byte[] buffer = new byte[fis.available()];
-            fis.read(buffer);
+            ZipInputStream zipInputStream = new ZipInputStream(new ByteArrayInputStream(data));
 
-            zip(archiveName, outputFilename, buffer);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public byte[] unzip(String archiveName, String filename) {
-        try {
-            ZipFile zipFile = new ZipFile(archiveName);
-
-            var entry = zipFile.getEntry(filename);
-            return zipFile.getInputStream(entry).readAllBytes();
-        } catch(Exception e) {
-            e.printStackTrace();
+            while ( zipInputStream.getNextEntry() != null) {
+                return zipInputStream.readAllBytes();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return new byte[0];
     }
