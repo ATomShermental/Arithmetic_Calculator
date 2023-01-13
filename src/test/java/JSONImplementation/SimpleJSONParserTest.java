@@ -1,11 +1,16 @@
 package JSONImplementation;
 
-import by.pp_project.JSONImplementation.SimpleJSONParser;
 import by.pp_project.PlainTextImplementation.Expression;
 import by.pp_project.PlainTextImplementation.Result;
+import by.pp_project.factories.AbstractFactory;
+import by.pp_project.factories.JSONFactory;
+import by.pp_project.parsers.Parser;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -15,9 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleJSONParserTest {
-    SimpleJSONParser simpleJSONParser = new SimpleJSONParser();
+    AbstractFactory abstractFactory = new JSONFactory();
+    Parser simpleJSONParser = abstractFactory.createParser();
     @Test
-    void parse() throws IOException, ParseException {
+    void parse() throws IOException, ParseException, ParserConfigurationException, SAXException {
         byte[] byteArray = (
                 "[" +
                 "{" +
@@ -44,7 +50,7 @@ class SimpleJSONParserTest {
     }
 
     @Test
-    void encode() throws IOException {
+    void encode() throws IOException, JAXBException {
         List<Result> results = Arrays.asList(
                 new Result("result1", 5),
                 new Result("result2", -3)

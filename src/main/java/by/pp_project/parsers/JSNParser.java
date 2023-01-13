@@ -1,39 +1,39 @@
-package by.pp_project.JSONImplementation;
-
+package by.pp_project.parsers;
 
 import by.pp_project.PlainTextImplementation.Expression;
 
 import by.pp_project.PlainTextImplementation.Result;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-import java.io.*;
-
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleJSONParser {
-    private JSONArray array;
+public class JSNParser implements Parser{
+    private JSONArray array_m;
     private JSONParser parser;
-    FileWriter writer;
+    @Override
 
-    public List<Expression> parse(byte[] byteArray) throws IOException, ParseException {
+    public List<Expression> parse(byte[] array) throws IOException, ParseException {
         parser = new JSONParser();
-        array = (JSONArray) parser.parse(new String(byteArray, StandardCharsets.UTF_8));
+        array_m = (JSONArray) parser.parse(new String(array, StandardCharsets.UTF_8));
         List<Expression> expressions = new ArrayList<>();
-        for (Object obj : array) {
+        for (Object obj : array_m) {
             JSONObject sample = (JSONObject) obj;
             expressions.add(new Expression((String) sample.get("name"), (String) sample.get("content")));
         }
 
         return expressions;
+
     }
 
-    public byte[] encode(List<Result> results) throws IOException {
+    @Override
+    public byte[] encode(List<Result> results) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.findAndRegisterModules();
         String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(results);

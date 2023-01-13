@@ -1,33 +1,37 @@
-package by.pp_project.XMLImplementation;
+package by.pp_project.parsers;
 
 import by.pp_project.PlainTextImplementation.Expression;
 import by.pp_project.PlainTextImplementation.Result;
 import by.pp_project.PlainTextImplementation.Results;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.json.simple.parser.ParseException;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import org.w3c.dom.Document;
-
-public class XMLDOMParser {
+public class XMLParser implements Parser{
     DocumentBuilderFactory factory;
     DocumentBuilder builder;
     Document document;
     List<Expression> expressions;
     NodeList nodeList;
-
-    public List<Expression> parse(byte[] array) throws ParserConfigurationException, IOException, SAXException {
+    @Override
+    public List<Expression> parse(byte[] array) throws IOException, ParserConfigurationException, SAXException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(array);
         factory = DocumentBuilderFactory.newInstance();
         builder = factory.newDocumentBuilder();
@@ -52,14 +56,15 @@ public class XMLDOMParser {
         return expressions;
     }
 
-    public byte[] encode(List<Result> results_m) throws JAXBException, IOException {
-        Results results = new Results();
-        results.setResults(results_m);
+    @Override
+    public byte[] encode(List<Result> results) throws IOException, JAXBException {
+        Results results_m = new Results();
+        results_m.setResults(results);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         JAXBContext jaxbContext = JAXBContext.newInstance(Results.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal(results, byteArrayOutputStream);
+        marshaller.marshal(results_m, byteArrayOutputStream);
         byte[] array = byteArrayOutputStream.toByteArray();
         byteArrayOutputStream.close();
         return array;

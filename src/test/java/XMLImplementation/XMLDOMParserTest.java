@@ -2,8 +2,10 @@ package XMLImplementation;
 
 import by.pp_project.PlainTextImplementation.Expression;
 import by.pp_project.PlainTextImplementation.Result;
-import by.pp_project.PlainTextImplementation.Results;
-import by.pp_project.XMLImplementation.XMLDOMParser;
+import by.pp_project.factories.AbstractFactory;
+import by.pp_project.factories.XMLFactory;
+import by.pp_project.parsers.Parser;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -16,9 +18,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class XMLDOMParserTest {
-    XMLDOMParser xmldomParser = new XMLDOMParser();
+    AbstractFactory abstractFactory = new XMLFactory();
+
+    Parser xmldomParser = abstractFactory.createParser();
     @Test
-    void parse() throws ParserConfigurationException, IOException, SAXException {
+    void parse() throws ParserConfigurationException, IOException, SAXException, ParseException {
         String xml = "<Expressions>\n" +
                 "  <Expression name='expr1'>\n" +
                 "    <content>8---1</content>\n" +

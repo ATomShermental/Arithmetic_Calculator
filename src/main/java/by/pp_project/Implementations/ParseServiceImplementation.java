@@ -1,21 +1,31 @@
 package by.pp_project.Implementations;
 
-import by.pp_project.JSONImplementation.SimpleJSONParser;
 import by.pp_project.Model.FileType;
 import by.pp_project.PlainTextImplementation.*;
 import by.pp_project.Services.ParseService;
-import by.pp_project.XMLImplementation.XMLDOMParser;
+import by.pp_project.factories.AbstractFactory;
+import by.pp_project.factories.JSONFactory;
+import by.pp_project.factories.PlainFactory;
+import by.pp_project.factories.XMLFactory;
+import by.pp_project.parsers.Parser;
 import org.apache.commons.io.FilenameUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseServiceImplementation implements ParseService {
-    private XMLDOMParser xmldomParser = new XMLDOMParser();
 
-    private SimpleJSONParser simpleJSONParser = new SimpleJSONParser();
+    AbstractFactory jsonFactory = new JSONFactory();
 
-    private PlainTextParser plainTextParser = new PlainTextParser();
+    AbstractFactory xmlFactory = new XMLFactory();
+
+    AbstractFactory plainFactory = new PlainFactory();
+
+    Parser xmldomParser = xmlFactory.createParser();
+
+    Parser simpleJSONParser = jsonFactory.createParser();
+
+    Parser plainTextParser = plainFactory.createParser();
 
     @Override
     public byte[] parse(FileType fileType, String outputFiletype) throws Exception {
