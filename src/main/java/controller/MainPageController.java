@@ -5,7 +5,7 @@ import Model.Download;
 import Model.FileResponseBuilder;
 import Model.FileType;
 import Services.ParseService;
-import des.DES;
+import DESImplementation.DES;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import zip.ZIP;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 

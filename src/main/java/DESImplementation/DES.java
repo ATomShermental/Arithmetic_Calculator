@@ -1,4 +1,4 @@
-package des;
+package DESImplementation;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
