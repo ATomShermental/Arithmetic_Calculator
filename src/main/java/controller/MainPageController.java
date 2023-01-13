@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import zip.ZIP;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -43,7 +47,17 @@ public class MainPageController {
         fileType.data = parseService.parse(fileType, download.getOutputType());
 
         if(download.isOutputZip() && !download.isOutputEnc()){
-            fileType.filename = "results.zip";
+              fileType.filename = "results";
+              switch (download.getOutputType()){
+                  case "xml":
+                      fileType.filename += ".xml";
+                      break;
+                  case "json":
+                      fileType.filename += ".json";
+                      break;
+                  case "plain":
+                      fileType.filename += ".txt";
+              }
             fileType.data = zip.zip(fileType.getFilename(), fileType.getData());
         }
 
@@ -55,6 +69,11 @@ public class MainPageController {
             fileType.data = DES.encrypt(fileType.getData(),"12345678".getBytes());
             fileType.data = zip.zip(fileType.getFilename(), fileType.getData());
         }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream.write(fileType.data);
+        String buffer = byteArrayOutputStream.toString(StandardCharsets.ISO_8859_1);
+        fileType.data = buffer.getBytes();
+        byteArrayOutputStream.close();
         return FileResponseBuilder.createResponse(fileType.getFilename(), fileType.getData());
 
     }
