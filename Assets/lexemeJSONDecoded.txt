@@ -1,3 +1,0 @@
-expr1 14
-expr2 23
-expr3 7

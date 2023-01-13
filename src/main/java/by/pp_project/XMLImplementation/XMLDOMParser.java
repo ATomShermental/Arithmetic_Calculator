@@ -1,13 +1,11 @@
 package by.pp_project.XMLImplementation;
 
 import by.pp_project.PlainTextImplementation.Expression;
-
 import by.pp_project.PlainTextImplementation.Results;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;

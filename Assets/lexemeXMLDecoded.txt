@@ -1,3 +1,0 @@
-first 14
-second 23
-third 7

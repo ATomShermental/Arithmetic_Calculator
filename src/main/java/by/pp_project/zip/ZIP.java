@@ -3,9 +3,9 @@ package by.pp_project.zip;
 
 import by.pp_project.Model.FileType;
 import org.apache.commons.io.FilenameUtils;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -43,7 +43,7 @@ public class ZIP {
     }
 
     public FileType allUnzip(FileType fileType){
-        while(FilenameUtils.getExtension(fileType.getFilename()).equals("by/pp_project/zip")){
+        while(FilenameUtils.getExtension(fileType.getFilename()).equals("zip")){
             fileType = unzip(fileType.getData());
         }
         return fileType;
