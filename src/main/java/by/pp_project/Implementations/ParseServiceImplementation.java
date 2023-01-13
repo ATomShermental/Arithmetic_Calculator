@@ -46,9 +46,7 @@ public class ParseServiceImplementation implements ParseService {
             case "json":
                 return simpleJSONParser.encode(results);
             case "xml":
-                Results result = new Results();
-                result.setResults(results);
-                return xmldomParser.encode(result);
+                return xmldomParser.encode(results);
             case default:
                 return new byte[0];
         }

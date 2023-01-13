@@ -38,13 +38,10 @@ class XMLDOMParserTest {
 
     @Test
     void encode() throws JAXBException, IOException {
-        Results results = new Results();
         List<Result> resultList = new ArrayList<>();
         resultList.add(new Result("expr1", 4));
         resultList.add(new Result("expr2", 12));
-        results.setResults(resultList);
-
-        byte[] encoded = xmldomParser.encode(results);
+        byte[] encoded = xmldomParser.encode(resultList);
         String decoded = new String(encoded);
         assertTrue(decoded.contains("<Result>"));
         assertTrue(decoded.contains("<name>expr1</name>"));

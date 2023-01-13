@@ -1,6 +1,7 @@
 package by.pp_project.XMLImplementation;
 
 import by.pp_project.PlainTextImplementation.Expression;
+import by.pp_project.PlainTextImplementation.Result;
 import by.pp_project.PlainTextImplementation.Results;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -51,7 +52,9 @@ public class XMLDOMParser {
         return expressions;
     }
 
-    public byte[] encode(Results results) throws JAXBException, IOException {
+    public byte[] encode(List<Result> results_m) throws JAXBException, IOException {
+        Results results = new Results();
+        results.setResults(results_m);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         JAXBContext jaxbContext = JAXBContext.newInstance(Results.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
