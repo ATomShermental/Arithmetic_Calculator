@@ -15,7 +15,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class XMLDOMParser {
     Document document;
     List<Expression> expressions;
     NodeList nodeList;
-    FileWriter writer;
 
     public List<Expression> parse(byte[] array) throws ParserConfigurationException, IOException, SAXException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(array);
