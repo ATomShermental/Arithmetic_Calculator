@@ -1,8 +1,8 @@
 package JSONImplementation;
 
-import PlainTextImplementation.Expression;
-import PlainTextImplementation.Result;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import by.pp_project.JSONImplementation.SimpleJSONParser;
+import by.pp_project.PlainTextImplementation.Expression;
+import by.pp_project.PlainTextImplementation.Result;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 

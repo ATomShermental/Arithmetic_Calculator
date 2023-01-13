@@ -1,8 +1,8 @@
 package ZIPImplementation;
 
-import Model.FileType;
+import by.pp_project.Model.FileType;
 import org.junit.jupiter.api.Test;
-import zip.ZIP;
+import by.pp_project.zip.ZIP;
 
 import static org.junit.jupiter.api.Assertions.*;
 

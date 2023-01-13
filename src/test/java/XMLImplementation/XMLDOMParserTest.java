@@ -1,8 +1,9 @@
 package XMLImplementation;
 
-import PlainTextImplementation.Expression;
-import PlainTextImplementation.Result;
-import PlainTextImplementation.Results;
+import by.pp_project.PlainTextImplementation.Expression;
+import by.pp_project.PlainTextImplementation.Result;
+import by.pp_project.PlainTextImplementation.Results;
+import by.pp_project.XMLImplementation.XMLDOMParser;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 

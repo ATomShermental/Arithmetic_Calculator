@@ -1,7 +1,7 @@
 package PlainImplementation;
 
-import PlainTextImplementation.Lexeme;
-import PlainTextImplementation.LexemeBuffer;
+import by.pp_project.PlainTextImplementation.Lexeme;
+import by.pp_project.PlainTextImplementation.LexemeBuffer;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,5 +1,6 @@
 package DESImplementation;
 
+import by.pp_project.DESImplementation.DES;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
