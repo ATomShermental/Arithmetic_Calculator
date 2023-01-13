@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class PlainTextRealisationTests {
+public class PlainTextTest {
 
     @Test
     public void testPlainTextRealisation(){
