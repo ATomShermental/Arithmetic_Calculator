@@ -14,12 +14,12 @@ import java.io.FileOutputStream;
 
 public class Main extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
-        File path = new File("Assets/inputPLAIN.txt");
+        File path = new File("Assets/inputXML.xml");
         FileInputStream fis = new FileInputStream(path);
         byte[] array = new byte[(int)path.length()];
         fis.read(array);
         fis.close();
-        FileOutputStream fout = new FileOutputStream("Assets/encrypted.txt");
+        FileOutputStream fout = new FileOutputStream("Assets/encryptedXML.xml");
         array = DES.encrypt(array,"12345678".getBytes());
         fout.write(array);
         fout.close();
